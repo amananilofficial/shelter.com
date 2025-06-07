@@ -1,0 +1,211 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+{% block title %} {{ agent.name }} - Agent Details | Shelter{% endblock %}
+{% block content %}
+<!-- BREADCRUMBS AREA START -->
+<div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <h2 class="breadcrumbs-title">{{ agent.name }}</h2>
+                    <ul class="breadcrumbs-list">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'agents_list' %}">Agents</a></li>
+                        <li>{{ agent.name }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMBS AREA END -->
+
+<!-- AGENTS DETAILS ABOUT START -->
+<div class="agents-details-about pt-115">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">                
+                <div class="agent-details-desc-info">
+                    <div class="agent-details-name">
+                        <h3>{{ agent.name }}</h3>
+                        <p>{{ agent.title }}</p>
+                    </div>
+                    <div class="agent-details-brief">
+                        <p>{{ agent.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-6 col-sm-4">
+                        <div class="agent-details-image">
+                            <img src="{{ agent.photo.url }}" height="330" width="320" alt="{{ agent.name }}" 
+                                 class="img-responsive shadow-lg rounded" style="width: 100%; border-radius: 5px;">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-8">                        
+                        <div class="agent-details-contact" style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h5 style="color: #333; margin-bottom: 20px; font-weight: 600;">Contact Details</h5>
+                            <div class="contact-item">
+                                <i class="fa fa-phone" aria-hidden="true" style="color: #4CAF50; margin-right: 10px;"></i>
+                                <span>{{ agent.phone }}</span>
+                            </div>
+                            <div class="contact-item" style="margin-top: 10px; margin-bottom: 20px;">
+                                <i class="fa fa-envelope" aria-hidden="true" style="color: #4CAF50; margin-right: 10px;"></i>
+                                <span>{{ agent.email }}</span>
+                            </div>
+                            <ul class="team-social-media" style="display: flex; padding: 0; list-style: none;">
+                                <li style="margin-right: 10px;">
+                                    <a href="https://wa.me/{{ agent.whatsapp }}" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #f5f5f5; border-radius: 50%; color: #333; transition: all 0.3s ease;">
+                                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li style="margin-right: 10px;">
+                                    <a href="{{ agent.instagram }}" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #f5f5f5; border-radius: 50%; color: #333; transition: all 0.3s ease;">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ agent.linkedin }}" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #f5f5f5; border-radius: 50%; color: #333; transition: all 0.3s ease;">
+                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- AGENTS DETAILS ABOUT END -->
+
+<!-- AGENT PROPERTIES AREA START -->
+<div class="featured-flat-area pt-115 pb-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title-2 text-center">
+                    <h2>AGENT PROPERTIES</h2>
+                    <p>Properties listed by {{ agent.name }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="featured-flat">
+            <div class="row">
+                {% if agent_properties %}
+                {% for property in agent_properties %}
+                <!-- flat-item -->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="flat-item">
+                        <div class="flat-item-image">
+                            <span class="for-sale">{{ property.status }}</span>
+                            <a href="{% url 'property_detail' property.slug %}"><img src="{{ property.image.url }}"
+                                    width="368px" height="250px" alt=""></a>
+                            <div class="flat-link">
+                                <a href="{% url 'property_detail' property.slug %}">More Details</a>
+                            </div>
+                            <ul class="flat-desc">
+                                <li>
+                                    <img src="{% static 'shelter/images/icons/4.png' %}" alt="">
+                                    <span>{{ property.area }}</span>
+                                </li>
+                                <li>
+                                    <img src="{% static 'shelter/images/icons/5.png' %}" alt="">
+                                    <span>{{ property.bedrooms }}</span>
+                                </li>
+                                <li>
+                                    <img src="{% static 'shelter/images/icons/6.png' %}" alt="">
+                                    <span>{{ property.bathrooms }}</span>
+                                </li>
+                            </ul>
+                        </div>                            
+                        <div class="flat-item-info">                                
+                            <div class="flat-title-price">
+                                <h5><a href="{% url 'property_detail' property.slug %}">{{ property.title }} </a></h5>
+                                <span class="price">INR {{ property.price }}</span>
+                            </div>
+                            <p><img src="{% static 'shelter/images/icons/location.png' %}" alt="">
+                                {{ property.location }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="col-md-12">
+                    <div class="alert alert-info text-center">
+                        No properties currently listed by this agent.
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- AGENT PROPERTIES AREA END -->
+
+<!-- EXPERIENCE INQUIRY AREA START -->
+<div class="experience-inquiry-area pb-115">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="experience" style="background-color: #f9f9f9; padding: 30px; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                    <h5 style="color: #333; margin-bottom: 20px; font-weight: 600;">Working Experience</h5>
+                    <div class="author-quote">
+                        <style>
+                            .experience-list {
+                                list-style-type: disc !important;
+                                padding-left: 20px;
+                                margin-top: 10px;
+                            }
+
+                            .experience-list li {
+                                display: list-item !important;
+                                list-style: disc !important;
+                                margin-bottom: 8px;
+                                position: relative;
+                            }
+
+                            .experience-list li:before {
+                                content: "•";
+                                position: absolute;
+                                left: -15px;
+                            }
+                        </style>
+                        <ul class="experience-list">
+                            {% for point in work_experience_points %}
+                            <li>{{ point }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="inquery leave-review" style="background-color: #f9f9f9; padding: 30px; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                    <h5 style="color: #333; margin-bottom: 20px; font-weight: 600;">Contact for any Inquiry</h5>                      <form id="contact-form-2" action="{% url 'agentcontact' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="agentname" value="{{agent.name}}">
+                        <input type="hidden" name="agent_id" value="{{agent.id}}">
+                        <!-- No property_slug here as this is directly from agent detail page -->
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                                <input type="text" name="name" placeholder="Your name" required>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <input type="email" name="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <input type="text" name="phone" placeholder="Phone">
+                        <textarea name="textarea" placeholder="Write your message here" required></textarea>
+                        <button type="submit" class="submit-btn-1">SEND MESSAGE</button>
+                    </form>
+                    <p class="form-messege"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EXPERIENCE INQUIRY AREA END -->
+
+{% endblock %}

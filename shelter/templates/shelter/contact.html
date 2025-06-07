@@ -1,0 +1,129 @@
+{% extends 'shelter/base.html' %}
+<title> {% block title %} Contact us | Shelter {% endblock %}</title>
+{% block content %}
+{% load static %}
+<!-- BREADCRUMBS AREA START -->
+<div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <h2 class="breadcrumbs-title">Contact</h2>
+                    <ul class="breadcrumbs-list">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMBS AREA END -->
+<!-- Start page content -->
+<section id="page-content" class="page-wrapper">
+    <!-- GOOGLE MAP AREA START -->
+    <div class="google-map-area pt-60 pb-60 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="section-title text-center mb-40">
+                        <h3>OUR</h3>
+                        <h2 class="mb-20">LOCATION</h2>
+                        <p>Find us easily using the interactive map below</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="google-map shadow rounded overflow-hidden">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497698.6600599542!2d77.3492968697896!3d12.954517010224148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1667557546000!5m2!1sen!2sus"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- GOOGLE MAP AREA END -->
+
+    <!-- CONTACT AREA START -->
+    <div class="contact-area pt-115 pb-115">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 col-xs-12">
+                    <!-- get-in-toch -->
+                    <div class="get-in-toch">
+                        <div class="section-title mb-30">
+                            <h3>GET IN</h3>
+                            <h2>TOUCH</h2>
+                        </div>
+                        <div class="contact-desc mb-50">
+                            <p><span data-placement="top" data-toggle="tooltip"
+                                    data-original-title="The name you can trust" class="tooltip-content">Sheltek</span>
+                                is the best theme for elit, sed do eiusmod tempor dolor sit ame tse ctetur adipiscing
+                                elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis
+                                nostrud exercitation oris nisi ut aliquip</p>
+                        </div>
+                        <ul class="contact-address">
+                            <li>
+                                <div class="contact-address-icon">
+                                    <img src="{% static 'shelter/images/icons/location-2.png' %}" alt="">
+                                </div>
+                                <div class="contact-address-info">
+                                    <span>Bangalore, </span>
+                                    <span>Karnataka, </span>
+                                    <span>India </span>
+                                    <span>562157 </span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-address-icon">
+                                    <img src="{% static 'shelter/images/icons/phone-3.png' %}" alt="">
+                                </div>
+                                <div class="contact-address-info">
+                                    <span>Telephone : <a href="tel:+91 7892939127">+91 7892939127</a></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-address-icon">
+                                    <img src="{% static 'shelter/images/icons/world.png' %}" alt="">
+                                </div>
+                                <div class="contact-address-info">
+                                    <span>Email : <a
+                                            href="mailto:amananil836@gmail.com">amananil836@gmail.com</a></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-7 col-xs-12">
+                    <div class="contact-messge contact-bg">                        <div class="leave-review">
+                            <h5>Leave a Message</h5>
+                            <form id="contact-form" action="{% url 'contact' %}" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="name" placeholder="Your name" required>
+                                <input type="email" name="email" placeholder="Your email address" required>
+                                <input type="text" name="phone" placeholder="Your phone number" required>
+                                <textarea name="message" placeholder="Write your message here" required></textarea>
+                                <button type="submit" class="submit-btn-1">SEND MESSAGE</button>
+                            </form>
+                            {% if messages %}
+                            <div class="form-messege mt-3">
+                                {% for message in messages %}
+                                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTACT AREA END -->
+</section>
+<!-- End page content -->
+{% endblock %}

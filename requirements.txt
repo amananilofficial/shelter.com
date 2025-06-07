@@ -1,0 +1,9 @@
+asgiref
+dj-database-url<1.0.0
+Django
+gunicorn
+Pillow
+pytz
+sqlparse
+whitenoise
+psycopg2-binary

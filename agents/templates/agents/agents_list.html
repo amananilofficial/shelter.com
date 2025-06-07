@@ -1,0 +1,149 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+<title>{% block title %} Agents List | Shelter {% endblock %}</title>
+{% block content %}
+    <!-- BREADCRUMBS AREA START -->
+    <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="breadcrumbs">
+                        <h2 class="breadcrumbs-title">Agent</h2>
+                        <ul class="breadcrumbs-list">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>Agent</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMBS AREA END -->
+    
+    <!-- Start page content -->
+    <section id="page-content" class="page-wrapper">
+        <!-- OUR AGENTS AREA START -->
+        <div class="our-agents-area pt-115 pb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title-2 text-center mb-70">
+                            <h2>OUR PROFESSIONAL AGENTS</h2>
+                            <p>Meet our team of experienced real estate professionals</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <style>
+                    .team-card {
+                        position: relative;
+                        overflow: hidden;
+                        margin-bottom: 30px;
+                        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                        transition: all 0.3s ease;
+                        background: #fff;
+                        border-radius: 5px;
+                    }
+
+                    .team-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                    }
+
+                    .team-contact-hover {
+                        position: absolute;
+                        bottom: -100%;
+                        left: 0;
+                        width: 100%;
+                        background-color: rgba(255, 255, 255, 0.95);
+                        padding: 15px;
+                        transition: all 0.3s ease;
+                    }
+
+                    .team-card:hover .team-contact-hover {
+                        bottom: 0;
+                    }
+
+                    .contact-item {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 8px;
+                    }
+
+                    .contact-item i {
+                        margin-right: 10px;
+                        color: #4CAF50;
+                        width: 16px;
+                    }
+
+                    .team-social-media {
+                        display: flex;
+                        justify-content: center;
+                        list-style: none;
+                        padding: 0;
+                        margin-top: 15px;
+                        margin-bottom: 5px;
+                    }
+
+                    .team-social-media li {
+                        margin: 0 8px;
+                    }
+
+                    .team-social-media li a {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background-color: #f5f5f5;
+                        color: #333;
+                        transition: all 0.3s ease;
+                    }
+
+                    .team-social-media li a:hover {
+                        background-color: #4CAF50;
+                        color: white;
+                    }
+                </style>
+                
+                <div class="row">
+                    {% for agent in agents %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card">
+                            <a href="{% url 'agent_detail' agent.id %}" style="display: block; color: inherit; text-decoration: none;">
+                                <img src="{{ agent.photo.url }}" alt="{{ agent.name }}" style="width: 100%;">
+                                <div style="padding: 15px; text-align: center;">
+                                    <h5 style="color: #333;">{{ agent.name }}</h5>
+                                    <p>{{ agent.title }}</p>
+                                </div>
+                            </a>
+                            <div class="team-contact-hover">
+                                <div class="contact-item">
+                                    <i class="fa fa-phone"></i>
+                                    <a href="tel:{{ agent.phone }}"><span>{{ agent.phone }}</span></a>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fa fa-envelope"></i>
+                                    <a href="mailto:{{ agent.email }}"><span>{{ agent.email }}</span></a>
+                                </div>
+                                <ul class="team-social-media">
+                                    <li><a href="https://wa.me/{{ agent.whatsapp }}"><i class="fa fa-whatsapp"></i></a></li>
+                                    <li><a href="{{ agent.instagram }}"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="{{ agent.linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- OUR AGENTS AREA END -->   
+    </section>
+    <!-- End page content -->
+{% endblock %}
