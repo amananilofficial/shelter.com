@@ -225,18 +225,6 @@ The application is fully responsive and optimized for:
 
 If you find any bugs or issues, please report them using the GitHub issue tracker.
 
-## 📞 Support
-
-For support and questions, please contact the development team:
-
-- 📧 **Email:** [amananiloffical@gmail.com](mailto:amananiloffical@gmail.com)  
-- 📱 **Phone:** [+91 78929 39127](tel:+917892939127)  
-- ![WhatsApp Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/16px-WhatsApp.svg.png) **WhatsApp:** [+91 78929 39127](https://wa.me/917892939127)  
-- ![Instagram Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/16px-Instagram_logo_2016.svg.png) **Instagram:** [@amananilofficial](https://instagram.com/amananilofficial)  
-- ![LinkedIn Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/16px-LinkedIn_logo_initials.png) **LinkedIn:** [Aman Anil](https://in.linkedin.com/in/amananilofficial)
-
-Or create an issue on GitHub.
-
 ## 🔄 Version History
 
 - **v1.0.0** - Initial release with core functionality
