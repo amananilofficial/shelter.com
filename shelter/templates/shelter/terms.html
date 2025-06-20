@@ -1,0 +1,105 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+<title>{% block title %}Terms of Service | Shelter{% endblock %}</title>
+{% block content %}
+    <!-- BREADCRUMBS AREA START -->
+    <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="breadcrumbs">
+                        <h2 class="breadcrumbs-title">Terms of Service</h2>
+                        <ul class="breadcrumbs-list">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>Terms of Service</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMBS AREA END -->
+
+    <!-- TERMS OF SERVICE AREA START -->
+    <section class="page-wrapper">
+        <div class="terms-area ptb-115">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-2 text-center">
+                            <h2>TERMS OF SERVICE</h2>
+                            <p>Last Updated: {% now "F d, Y" %}</p>
+                        </div>
+                        
+                        <div class="terms-content">
+                            <div class="single-terms mb-30">
+                                <h4>1. Acceptance of Terms</h4>
+                                <p>By accessing and using the Sheltek website and services, you accept and agree to be bound by the terms and provision of this agreement. These Terms of Service govern your use of our real estate platform and services.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>2. Use of Services</h4>
+                                <p>Our services are intended for:</p>
+                                <ul>
+                                    <li>Searching and browsing property listings</li>
+                                    <li>Contacting real estate agents and property owners</li>
+                                    <li>Receiving information about available properties</li>
+                                    <li>Accessing real estate market information and resources</li>
+                                </ul>
+                                <p>You agree to use our services only for lawful purposes and in accordance with these Terms.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>3. User Responsibilities</h4>
+                                <p>As a user of our platform, you agree to:</p>
+                                <ul>
+                                    <li>Provide accurate and truthful information</li>
+                                    <li>Maintain the confidentiality of your account information</li>
+                                    <li>Not use the service for any fraudulent or unlawful activities</li>
+                                    <li>Respect the intellectual property rights of others</li>
+                                    <li>Not interfere with the proper functioning of the website</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>4. Property Information</h4>
+                                <p>While we strive to provide accurate and up-to-date property information, we cannot guarantee the accuracy, completeness, or reliability of all listings. Property details, prices, and availability are subject to change without notice. We recommend verifying all information directly with the property owner or agent.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>5. Third-Party Services</h4>
+                                <p>Our platform may contain links to third-party websites or services. We are not responsible for the content, privacy policies, or practices of these third-party sites. Your interactions with third-party services are solely between you and the third party.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>6. Limitation of Liability</h4>
+                                <p>Sheltek shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of our services. This includes, but is not limited to, damages for loss of profits, data, or other intangible losses.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>7. Privacy Policy</h4>
+                                <p>Your privacy is important to us. Please review our Privacy Policy, which also governs your use of our services, to understand our practices regarding the collection and use of your personal information.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>8. Modifications to Terms</h4>
+                                <p>We reserve the right to modify these Terms of Service at any time. We will notify users of any material changes by posting the new Terms on this page. Your continued use of our services after such modifications constitutes acceptance of the updated Terms.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>9. Termination</h4>
+                                <p>We may terminate or suspend your access to our services immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms of Service.</p>
+                            </div>
+                            
+                            <div class="single-terms mb-30">
+                                <h4>10. Contact Information</h4>
+                                <p>If you have any questions about these Terms of Service, please contact us at <a href="mailto:amananil836@gmail.com">amananil836@gmail.com</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TERMS OF SERVICE AREA END -->
+{% endblock %}

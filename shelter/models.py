@@ -25,9 +25,12 @@ class Listening(models.Model):
     created = models.DateTimeField(default=timezone.now)
     available = models.BooleanField(default=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    
     class Meta:
         ordering = ('-created',)
-        index_together = (('id', 'slug'),)
+        indexes = [
+            models.Index(fields=['id', 'slug']),
+        ]
     
     def __str__(self):
         return self.title
