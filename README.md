@@ -499,25 +499,6 @@ After setup, you can test:
    - View sample data
    - Test export functionality
 
-## 📁 File Structure
-
-```
-users/management/commands/
-├── __init__.py
-└── setup_users.py          # Main setup command
-
-marketing/
-├── models.py               # Marketing app models
-└── admin.py               # Marketing admin config
-
-Root files:
-├── quick_setup.py         # Python setup script
-├── setup_users.bat       # Windows batch file
-├── setup_users.sh        # Unix shell script
-├── USER_SETUP_GUIDE.md   # Detailed guide
-└── README.md             # This file
-```
-
 ## 🐛 Troubleshooting
 
 **Issue**: "manage.py not found"
