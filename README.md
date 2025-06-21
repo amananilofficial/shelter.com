@@ -296,11 +296,6 @@ If you find any bugs or issues, please report them using the GitHub issue tracke
 - Admin interface
 
 ---
-<div align="center">
-
-**Built with ❤️ using Django**
-
-</div>
 
 # Shelter.com - Automated User Setup System
 
@@ -539,4 +534,8 @@ Root files:
 
 ---
 
-**Need help?** Check the `USER_SETUP_GUIDE.md` for detailed information.
+<div align="center">
+
+**Built with ❤️ using Django by Aman Anil**
+
+</div>
