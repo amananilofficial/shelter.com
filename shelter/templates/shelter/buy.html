@@ -1,0 +1,328 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+<title> {% block title %}Property Purchase | Shelter {% endblock %}</title>
+{% block content %}
+<!-- BREADCRUMBS AREA START -->
+<div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <h2 class="breadcrumbs-title">Property Purchase</h2>
+                    <ul class="breadcrumbs-list">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'services' %}">Services</a></li>
+                        <li>Buy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMBS AREA END -->
+
+<!-- Start page content -->
+<section id="page-content" class="page-wrapper">
+
+    <!-- ABOUT SHELTEK AREA START -->
+    <div class="about-sheltek-area ptb-115">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="section-title mb-30">
+                        <h3>KNOW ABOUT </h3>
+                        <h2>OUR BUYING EXPERTISE</h2>
+                    </div>
+                    <div class="about-sheltek-info">
+                        <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust"
+                                class="tooltip-content">Sheltek</span> is your trusted partner for property purchases.
+                            We
+                            specialize in helping buyers find their perfect homes, apartments, and commercial spaces at
+                            the best market value with professional guidance and comprehensive search strategies.</p>
+                        <div class="author-quote">
+                            <p>We provide expert property evaluation, professional inspection services, strategic
+                                searching, and
+                                negotiation support to ensure you find the right property at the best price.</p>
+                            <p>Our experienced buying team understands the local market dynamics and uses proven
+                                strategies to find quality properties and close deals efficiently.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="about-image">
+                        <img src="{% static 'shelter/images/about/4.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT SHELTEK AREA END -->
+
+    <!-- SERVICES AREA START -->
+    <div class="services-area pb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-2 text-center">
+                        <h2>OUR OTHER SERVICES</h2>
+                        <p>Sheltek is the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam,
+                            quis nostrud</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="service-carousel">
+                    <!-- service-item -->
+                    <div class="col-md-12">
+                        <div class="service-item">
+                            <div class="service-item-image">
+                                <a href="{% url 'sale_view' %}"><img src="{% static 'shelter/images/service/1.jpg' %}"
+                                        alt=""></a>
+                            </div>
+                            <div class="service-item-info">
+                                <h5><a href="{% url 'sale_view' %}">Sale Property</a></h5>
+                                <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse tetur adiping
+                                    eiusmo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- service-item -->
+                    <div class="col-md-12">
+                        <div class="service-item">
+                            <div class="service-item-image">
+                                <a href="{% url 'buy_view' %}"><img src="{% static 'shelter/images/service/2.jpg' %}"
+                                        alt=""></a>
+                            </div>
+                            <div class="service-item-info">
+                                <h5><a href="{% url 'buy_view' %}">Buy Property</a></h5>
+                                <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse tetur adiping
+                                    eiusmo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- service-item -->
+                    <div class="col-md-12">
+                        <div class="service-item">
+                            <div class="service-item-image">
+                                <a href="{% url 'rent_view' %}"><img src="{% static 'shelter/images/service/3.jpg' %}"
+                                        alt=""></a>
+                            </div>
+                            <div class="service-item-info">
+                                <h5><a href="{% url 'rent_view' %}">Rent Property</a></h5>
+                                <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse tetur adiping
+                                    eiusmo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- service-item -->
+                    <div class="col-md-12">
+                        <div class="service-item">
+                            <div class="service-item-image">
+                                <a href="{% url 'property_management_view' %}"><img
+                                        src="{% static 'shelter/images/service/4.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="service-item-info">
+                                <h5><a href="{% url 'property_management_view' %}">Property Management</a></h5>
+                                <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse tetur adiping
+                                    eiusmo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- service-item -->
+                    <div class="col-md-12">
+                        <div class="service-item">
+                            <div class="service-item-image">
+                                <a href="#"><img src="{% static 'shelter/images/service/4.jpg' %}" alt=""></a>
+                            </div>
+                            <div class="service-item-info">
+                                <h5><a href="#">Sale Property</a></h5>
+                                <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse tetur adiping
+                                    eiusmo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SERVICES AREA END -->
+
+    <!-- BOOKING AREA START -->
+    <div class="booking-area bg-1 call-to-bg plr-140 pt-75">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="section-title text-white">
+                        <h3>OUR BUYING</h3>
+                        <h2 class="h1">ACHIEVEMENTS</h2>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <div class="booking-conternt  clearfix">
+                        <div class="counter-content">
+                            <!-- counter-item -->
+                            <div class="counter-item">
+                                <h2>
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <span class="counter">999</span>
+                                </h2>
+                                <p>Complete Project</p>
+                            </div>
+                            <!-- counter-item -->
+                            <div class="counter-item">
+                                <h2>
+                                    <i class="fa fa-key" aria-hidden="true"></i>
+                                    <span class="counter">555</span>
+                                </h2>
+                                <p>Property Bought</p>
+                            </div>
+                            <!-- counter-item -->
+                            <div class="counter-item">
+                                <h2>
+                                    <i class="fa fa-smile-o" aria-hidden="true"></i>
+                                    <span class="counter">350</span>
+                                </h2>
+                                <p>Happy Clients</p>
+                            </div>
+                            <!-- counter-item -->
+                            <div class="counter-item">
+                                <h2>
+                                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                                    <span class="counter">100</span>
+                                </h2>
+                                <p>Awards Win</p>
+                            </div>
+                        </div>
+                        <div class="booking-imgae">
+                            <img src="{% static 'shelter/images/others/booking.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BOOKING AREA END -->
+
+    <!-- TESTIMONIAL AREA START -->
+    <div class="testimonial-area ptb-115">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="testimonial">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-9">
+                                <div class="section-title mb-30">
+                                    <h3>SOME OF OUR</h3>
+                                    <h2 class="h1">HAPPY CLIENTS</h2>
+                                </div>
+                                <div class="testimonial-carousel dots-right-btm"> <!-- testimonial-item -->
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-brief">
+                                            <p>"<span data-placement="top" data-toggle="tooltip"
+                                                    data-original-title="The name you can trust"
+                                                    class="tooltip-content">Sheltek</span> helped us find our dream home
+                                                quickly and at an excellent price. Their search strategy was
+                                                outstanding and they guided us through every step of the process with
+                                                professionalism and expertise. Highly recommended!"</p>
+                                        </div>
+                                        <h6>John Smith, <span>Home Buyer</span></h6>
+                                    </div>
+                                    <!-- testimonial-item -->
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-brief">
+                                            <p>"The buying team at <span data-placement="top" data-toggle="tooltip"
+                                                    data-original-title="The name you can trust"
+                                                    class="tooltip-content">Sheltek</span> exceeded our expectations.
+                                                They provided accurate market analysis, professional inspection
+                                                services, and found
+                                                perfect properties within weeks. The entire buying process was smooth
+                                                and
+                                                stress-free."</p>
+                                        </div>
+                                        <h6>Sarah Johnson, <span>Property Buyer</span></h6>
+                                    </div>
+                                    <!-- testimonial-item -->
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-brief">
+                                            <p>"Working with <span data-placement="top" data-toggle="tooltip"
+                                                    data-original-title="The name you can trust"
+                                                    class="tooltip-content">Sheltek</span> for our commercial property
+                                                purchase was the best decision. Their market knowledge and negotiation
+                                                skills helped us achieve the best possible deal. Professional service
+                                                from start to finish."</p>
+                                        </div>
+                                        <h6>Michael Brown, <span>Business Buyer</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-3">
+                                <div class="testimonial-image">
+                                    <img src="{% static 'shelter/images/others/testimonial.jpg' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TESTIMONIAL AREA END -->
+
+    <!-- BRAND AREA START -->
+    <div class="brand-area pb-115">
+        <div class="container">
+            <div class="row">
+                <div class="brand-carousel">
+                    <!-- brand-item -->
+                    <div class="col-md-12">
+                        <div class="brand-item">
+                            <img src="{% static 'shelter/images/brand/1.png' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- brand-item -->
+                    <div class="col-md-12">
+                        <div class="brand-item">
+                            <img src="{% static 'shelter/images/brand/2.png' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- brand-item -->
+                    <div class="col-md-12">
+                        <div class="brand-item">
+                            <img src="{% static 'shelter/images/brand/3.png' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- brand-item -->
+                    <div class="col-md-12">
+                        <div class="brand-item">
+                            <img src="{% static 'shelter/images/brand/4.png' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- brand-item -->
+                    <div class="col-md-12">
+                        <div class="brand-item">
+                            <img src="{% static 'shelter/images/brand/5.png' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- brand-item -->
+                    <div class="col-md-12">
+                        <div class="brand-item">
+                            <img src="{% static 'shelter/images/brand/1.png' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- brand-item -->
+                    <div class="col-md-12">
+                        <div class="brand-item">
+                            <img src="{% static 'shelter/images/brand/4.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BRAND AREA END -->
+
+
+</section>
+<!-- End page content -->
+{% endblock %}

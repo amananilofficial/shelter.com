@@ -1,0 +1,159 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block title %}Add New Customer - CRM{% endblock %}
+
+{% block extrastyle %}
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        .required {
+            color: red;
+        }
+        .nav-breadcrumb {
+            margin: 20px 0;
+        }    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <div class="nav-breadcrumb">
+            <a href="{% url 'crm:dashboard' %}">CRM Dashboard</a> &gt; 
+            <a href="{% url 'crm:customer_list' %}">Customers</a> &gt; 
+            Add New Customer
+        </div>
+        
+        <h1>Add New Customer</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="first_name">First Name <span class="required">*</span></label>
+                <input type="text" id="first_name" name="first_name" 
+                       value="{{ form_data.first_name|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="last_name">Last Name <span class="required">*</span></label>
+                <input type="text" id="last_name" name="last_name" 
+                       value="{{ form_data.last_name|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" 
+                       value="{{ form_data.email|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" 
+                       value="{{ form_data.phone|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="whatsapp">WhatsApp</label>
+                <input type="tel" id="whatsapp" name="whatsapp" 
+                       value="{{ form_data.whatsapp|default:'' }}">
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" name="address">{{ form_data.address|default:'' }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" 
+                       value="{{ form_data.city|default:'' }}">
+            </div>
+            
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    {% for value, label in status_choices %}
+                        <option value="{{ value }}" 
+                                {% if form_data.status == value or value == 'lead' %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select id="priority" name="priority">
+                    {% for value, label in priority_choices %}
+                        <option value="{{ value }}" 
+                                {% if form_data.priority == value or value == 'medium' %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="source">Source</label>
+                <input type="text" id="source" name="source" 
+                       value="{{ form_data.source|default:'' }}"
+                       placeholder="How did they find us?">
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes">{{ form_data.notes|default:'' }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="add_reason">Reason for Adding Customer <span class="required">*</span></label>
+                <textarea id="add_reason" name="add_reason" required 
+                          placeholder="Why are you adding this customer? (e.g., Called inquiring about property, Referred by existing client, etc.)">{{ form_data.add_reason|default:'' }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn">Add Customer</button>
+                <a href="{% url 'crm:customer_list' %}" class="btn btn-secondary">Cancel</a>
+            </div>        </form>
+    </div>
+{% endblock %}

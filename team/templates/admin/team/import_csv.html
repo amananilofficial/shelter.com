@@ -1,0 +1,51 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Import Team Members - CSV{% endblock %}
+
+{% block content %}
+<div class="colM">
+    <h1>Import Team Members from CSV</h1>
+    
+    <div class="form-row">
+        <div class="field-box">
+            <h2>CSV Format Requirements</h2>
+            <p>Your CSV file should contain the following columns:</p>
+            <ul>
+                <li><strong>name</strong> - Full name (required)</li>
+                <li><strong>email</strong> - Email address (required, unique)</li>
+                <li><strong>title</strong> - Job title</li>
+                <li><strong>role</strong> - Role (member, manager, admin)</li>
+                <li><strong>phone</strong> - Phone number</li>
+                <li><strong>whatsapp</strong> - WhatsApp number</li>
+                <li><strong>instagram</strong> - Instagram profile URL</li>
+                <li><strong>linkedin</strong> - LinkedIn profile URL</li>
+                <li><strong>description</strong> - Bio/description</li>
+                <li><strong>work_experience</strong> - Work experience (use | to separate points)</li>
+                <li><strong>is_published</strong> - Published status (True/False)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <label for="csv_file">CSV File:</label>
+            <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
+        </div>
+        
+        <div class="submit-row">
+            <input type="submit" value="Import CSV" class="default">
+            <a href="{% url 'admin:team_team_changelist' %}" class="button">Cancel</a>
+        </div>
+    </form>
+    
+    <div class="form-row">
+        <div class="field-box">
+            <h3>Sample CSV Format:</h3>
+            <pre>name,email,title,role,phone,whatsapp,instagram,linkedin,description,work_experience,is_published
+John Doe,john@example.com,Manager,manager,+1234567890,+1234567890,https://instagram.com/john,https://linkedin.com/in/john,Experienced manager,Led team of 10|Increased sales by 20%,True</pre>
+        </div>
+    </div>
+</div>
+{% endblock %}

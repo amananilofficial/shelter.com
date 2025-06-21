@@ -221,3 +221,15 @@ def privacy_view(request):
 
 def cookies_view(request):
     return render(request, 'shelter/cookies.html')
+
+def sale_view(request):
+    return render(request, 'shelter/sale.html')
+
+def buy_view(request):
+    return render(request, 'shelter/buy.html')
+
+def rent_view(request):
+    return render(request, 'shelter/rent.html')
+
+def property_management_view(request):
+    return render(request, 'shelter/property_management.html')

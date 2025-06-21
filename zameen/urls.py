@@ -9,6 +9,8 @@ urlpatterns = [
     path('',include('shelter.urls')),
     path('agents/',include('agents.urls')),
     path('team/', include('team.urls')),
+    path('crm/', include('crm.urls')),
+    path('marketing/', include('marketing.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

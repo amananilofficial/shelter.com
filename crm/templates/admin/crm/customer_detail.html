@@ -1,0 +1,297 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block title %}{{ customer.full_name }} - Customer Details{% endblock %}
+
+{% block extrastyle %}
+    <style>
+        .customer-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .customer-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .info-item {
+            margin-bottom: 15px;
+        }
+        .info-item label {
+            display: block;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .info-item .value {
+            color: #333;
+            font-size: 1.1em;
+        }
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .status-lead { background-color: #fff3cd; color: #856404; }
+        .status-customer { background-color: #d4edda; color: #155724; }
+        .status-prospect { background-color: #cce5ff; color: #004085; }
+        .status-inactive { background-color: #f8d7da; color: #721c24; }
+        .interactions-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .interaction-item {
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+        }
+        .interaction-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .interaction-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        .nav-breadcrumb {
+            margin: 20px 0;
+        }
+        .nav-breadcrumb a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="customer-detail-container">
+        <div class="nav-breadcrumb">
+            <a href="{% url 'crm:dashboard' %}">CRM Dashboard</a> &gt; 
+            <a href="{% url 'crm:customer_list' %}">Customers</a> &gt; 
+            {{ customer.full_name }}
+        </div>
+        
+        <h1>{{ customer.full_name }}</h1>
+        
+        <div class="customer-info">
+            <h2>Customer Information</h2>
+            <div class="info-grid">
+                <div>
+                    <div class="info-item">
+                        <label>Name</label>
+                        <div class="value">{{ customer.full_name }}</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <div class="value">{{ customer.email }}</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Phone</label>
+                        <div class="value">{{ customer.phone }}</div>
+                    </div>
+                    <div class="info-item">
+                        <label>WhatsApp</label>
+                        <div class="value">{{ customer.whatsapp|default:"Not provided" }}</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="info-item">
+                        <label>Status</label>
+                        <div class="value">
+                            <span class="status-badge status-{{ customer.status }}">
+                                {{ customer.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label>Priority</label>
+                        <div class="value">{{ customer.get_priority_display }}</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Source</label>
+                        <div class="value">{{ customer.source|default:"Not specified" }}</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Assigned To</label>
+                        <div class="value">{{ customer.assigned_to|default:"Unassigned" }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            {% if customer.address %}
+                <div class="info-item">
+                    <label>Address</label>
+                    <div class="value">{{ customer.address }}</div>
+                </div>
+            {% endif %}
+            
+            {% if customer.city %}
+                <div class="info-item">
+                    <label>City</label>
+                    <div class="value">{{ customer.city }}</div>
+                </div>
+            {% endif %}
+            
+            {% if customer.notes %}
+                <div class="info-item">
+                    <label>Notes</label>
+                    <div class="value">{{ customer.notes }}</div>
+                </div>
+            {% endif %}
+            
+            <div class="info-item">
+                <label>Created</label>
+                <div class="value">{{ customer.created_at|date:"F d, Y H:i" }} by {{ customer.created_by }}</div>
+            </div>
+        </div>
+        
+        <div class="interactions-section">
+            <h2>Recent Interactions</h2>
+            {% for interaction in interactions %}
+                <div class="interaction-item">
+                    <div class="interaction-header">
+                        {{ interaction.get_interaction_type_display }}: {{ interaction.subject }}
+                    </div>
+                    <div class="interaction-meta">
+                        {{ interaction.interaction_date|date:"F d, Y H:i" }} by {{ interaction.created_by }}
+                    </div>
+                    <div>{{ interaction.description }}</div>
+                </div>
+            {% empty %}
+                <p>No interactions recorded yet.</p>
+            {% endfor %}
+            
+            <button type="button" class="btn" onclick="showAddInteractionForm()">Add Interaction</button>
+        </div>
+        
+        <div class="interactions-section">
+            <h2>Recent History</h2>
+            {% for history in recent_history %}
+                <div class="interaction-item">
+                    <div class="interaction-header">
+                        {{ history.get_action_display }}
+                        {% if history.field_changed %}: {{ history.field_changed }}{% endif %}
+                    </div>
+                    <div class="interaction-meta">
+                        {{ history.changed_at|date:"F d, Y H:i" }} by {{ history.changed_by }}
+                    </div>
+                    {% if history.old_value and history.new_value %}
+                        <div>Changed from "{{ history.old_value }}" to "{{ history.new_value }}"</div>
+                    {% endif %}
+                    {% if history.reason %}
+                        <div><strong>Reason:</strong> {{ history.reason }}</div>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No history recorded yet.</p>
+            {% endfor %}
+            
+            <a href="{% url 'crm:customer_history' customer.id %}" class="btn btn-secondary">View Full History</a>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="{% url 'crm:edit_customer' customer.id %}" class="btn">Edit Customer</a>
+            <a href="{% url 'crm:customer_list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+    
+    <!-- Add Interaction Modal (hidden by default) -->
+    <div id="addInteractionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; width: 500px;">
+            <h3>Add Interaction</h3>
+            <form id="addInteractionForm">
+                {% csrf_token %}
+                <div style="margin-bottom: 15px;">
+                    <label>Type</label>
+                    <select name="interaction_type" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                        <option value="call">Phone Call</option>
+                        <option value="email">Email</option>
+                        <option value="meeting">Meeting</option>
+                        <option value="note">Note</option>
+                        <option value="whatsapp">WhatsApp</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Subject</label>
+                    <input type="text" name="subject" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Description</label>
+                    <textarea name="description" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; height: 100px;"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="btn">Add Interaction</button>
+                    <button type="button" class="btn btn-secondary" onclick="hideAddInteractionForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function showAddInteractionForm() {
+            document.getElementById('addInteractionModal').style.display = 'block';
+        }
+        
+        function hideAddInteractionForm() {
+            document.getElementById('addInteractionModal').style.display = 'none';
+        }
+        
+        document.getElementById('addInteractionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('{% url "crm:add_interaction" customer.id %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            });
+        });
+    </script>
+{% endblock %}

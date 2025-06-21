@@ -1,0 +1,218 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block title %}Customer List - CRM{% endblock %}
+
+{% block extrastyle %}
+    <style>
+        .customer-list-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .filters-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .filter-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filter-group input, .filter-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .customers-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .customers-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .customers-table th,
+        .customers-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .customers-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .customers-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .status-lead { background-color: #fff3cd; color: #856404; }
+        .status-customer { background-color: #d4edda; color: #155724; }
+        .status-prospect { background-color: #cce5ff; color: #004085; }
+        .status-inactive { background-color: #f8d7da; color: #721c24; }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 2px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 0.8em;
+        }
+        .pagination {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .pagination a, .pagination span {
+            padding: 8px 12px;
+            margin: 0 2px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+        }
+        .pagination .current {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="customer-list-container">
+        <h1>Customer List</h1>
+        
+        <div class="filters-section">
+            <form method="GET">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="search">Search</label>
+                        <input type="text" id="search" name="search" value="{{ search_query|default:'' }}" 
+                               placeholder="Name, email, or phone">
+                    </div>
+                    <div class="filter-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="">All Statuses</option>
+                            {% for value, label in status_choices %}
+                                <option value="{{ value }}" {% if status_filter == value %}selected{% endif %}>
+                                    {{ label }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="priority">Priority</label>
+                        <select id="priority" name="priority">
+                            <option value="">All Priorities</option>
+                            {% for value, label in priority_choices %}
+                                <option value="{{ value }}" {% if priority_filter == value %}selected{% endif %}>
+                                    {{ label }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button type="submit" class="btn">Filter</button>
+                        <a href="{% url 'crm:customer_list' %}" class="btn">Clear</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="customers-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in page_obj %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'crm:customer_detail' customer.id %}">
+                                    {{ customer.full_name }}
+                                </a>
+                            </td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.phone }}</td>
+                            <td>
+                                <span class="status-badge status-{{ customer.status }}">
+                                    {{ customer.get_status_display }}
+                                </span>
+                            </td>
+                            <td>{{ customer.get_priority_display }}</td>
+                            <td>{{ customer.created_at|date:"M d, Y" }}</td>
+                            <td>
+                                <a href="{% url 'crm:customer_detail' customer.id %}" class="btn btn-sm">View</a>
+                                <a href="{% url 'crm:edit_customer' customer.id %}" class="btn btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 40px;">
+                                No customers found.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% if page_obj.has_other_pages %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">&laquo; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">Previous</a>
+                {% endif %}
+                
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+                
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if priority_filter %}&priority={{ priority_filter }}{% endif %}">Last &raquo;</a>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <div style="margin-top: 20px;">
+            <a href="{% url 'crm:add_customer' %}" class="btn">Add New Customer</a>
+            <a href="{% url 'crm:dashboard' %}" class="btn">Back to Dashboard</a>
+        </div>
+    </div>
+{% endblock %}

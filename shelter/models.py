@@ -24,7 +24,15 @@ class Listening(models.Model):
     garage = models.IntegerField()
     created = models.DateTimeField(default=timezone.now)
     available = models.BooleanField(default=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='rent')
+    
+    # Marketing fields
+    is_featured = models.BooleanField(default=False, help_text="Featured on homepage")
+    marketing_priority = models.CharField(
+        max_length=20, 
+        choices=[('low', 'Low'), ('medium', 'Medium'), ('high', 'High')],
+        default='medium'
+    )
     
     class Meta:
         ordering = ('-created',)
