@@ -329,35 +329,6 @@ python quick_setup.py --reset
 python manage.py setup_users --reset
 ```
 
-## 👥 User Accounts Created
-
-### 🔧 System Administrator
-| Username | Password | Email | Role |
-|----------|----------|-------|------|
-| admin | admin123 | admin@shelter.com | Superuser |
-
-### 🏠 Shelter App Users
-| Username | Password | Email | Role |
-|----------|----------|-------|------|
-| shelter_manager | shelter123 | manager@shelter.com | Manager |
-| shelter_employee | shelter123 | employee@shelter.com | Employee |
-
-### 🏘️ Agents App Users
-| Username | Password | Email | Role |
-|----------|----------|-------|------|
-| agent_admin | agent123 | admin@agents.com | Admin |
-| agent_manager | agent123 | manager@agents.com | Manager |
-| agent_1 | agent123 | agent1@agents.com | Agent |
-| agent_2 | agent123 | agent2@agents.com | Agent |
-
-### 👥 Team App Users
-| Username | Password | Email | Role |
-|----------|----------|-------|------|
-| team_admin | team123 | admin@team.com | Admin |
-| team_manager | team123 | manager@team.com | Manager |
-| team_member_1 | team123 | member1@team.com | Member |
-| team_member_2 | team123 | member2@team.com | Member |
-
 ## 📊 Sample Data Generated
 
 ### Shelter App
