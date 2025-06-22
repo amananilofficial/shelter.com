@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Import Team Members - Excel{% endblock %}
+
+{% block content %}
+<div class="colM">
+    <h1>Import Team Members from Excel</h1>
+    
+    <div class="form-row">
+        <div class="field-box">
+            <h2>Excel Format Requirements</h2>
+            <p>Your Excel file should contain the following columns in the first row:</p>
+            <ul>
+                <li><strong>name</strong> - Full name (required)</li>
+                <li><strong>email</strong> - Email address (required, unique)</li>
+                <li><strong>title</strong> - Job title</li>
+                <li><strong>role</strong> - Role (member, manager, admin)</li>
+                <li><strong>phone</strong> - Phone number</li>
+                <li><strong>whatsapp</strong> - WhatsApp number</li>
+                <li><strong>instagram</strong> - Instagram profile URL</li>
+                <li><strong>linkedin</strong> - LinkedIn profile URL</li>
+                <li><strong>description</strong> - Bio/description</li>
+                <li><strong>work_experience</strong> - Work experience (use | to separate points)</li>
+                <li><strong>is_published</strong> - Published status (True/False)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <label for="excel_file">Excel File:</label>
+            <input type="file" name="excel_file" id="excel_file" accept=".xls,.xlsx" required>
+        </div>
+        
+        <div class="submit-row">
+            <input type="submit" value="Import Excel" class="default">
+            <a href="{% url 'admin:team_team_changelist' %}" class="button">Cancel</a>
+        </div>
+    </form>
+    
+    <div class="form-row">
+        <div class="field-box">
+            <h3>Notes:</h3>
+            <ul>
+                <li>Supports both .xls and .xlsx formats</li>
+                <li>First row should contain column headers</li>
+                <li>Existing records will be updated based on email</li>
+                <li>New records will be created for new emails</li>
+                <li>Empty cells will keep existing values for updates</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+
+{% block title %}{{ team.name }} - Team Details | Shelter{% endblock %}
+
+{% block content %}
+<!-- BREADCRUMBS AREA START -->
+<div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <h2 class="breadcrumbs-title">{{ team.name }}</h2>
+                    <ul class="breadcrumbs-list">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'team:team' %}">Team</a></li>
+                        <li>{{ team.name }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMBS AREA END -->
+
+<!-- TEAM DETAILS ABOUT START -->
+<div class="agents-details-about pt-115">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">                
+                <div class="agent-details-desc-info">
+                    <div class="agent-details-name">
+                        <h3>{{ team.name }}</h3>
+                        <p>{{ team.title }}</p>
+                    </div>
+                    <div class="agent-details-brief">
+                        <p>{{ team.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-6 col-sm-4">
+                        <div class="agent-details-image">
+                            <img src="{{ team.photo.url }}" height="330" width="320" alt="{{ team.name }}" 
+                                 class="img-responsive shadow-lg rounded" style="width: 100%; border-radius: 5px;">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-8">                        
+                        <div class="agent-details-contact" style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h5 style="color: #333; margin-bottom: 20px; font-weight: 600;">Contact Details</h5>
+                            <div class="contact-item">
+                                <i class="fa fa-phone" aria-hidden="true" style="color: #4CAF50; margin-right: 10px;"></i>
+                                <span>{{ team.phone }}</span>
+                            </div>
+                            <div class="contact-item" style="margin-top: 10px; margin-bottom: 20px;">
+                                <i class="fa fa-envelope" aria-hidden="true" style="color: #4CAF50; margin-right: 10px;"></i>
+                                <span>{{ team.email }}</span>
+                            </div>
+                            <ul class="team-social-media" style="display: flex; padding: 0; list-style: none;">
+                                <li style="margin-right: 10px;">
+                                    <a href="https://wa.me/{{ team.whatsapp }}" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #f5f5f5; border-radius: 50%; color: #333; transition: all 0.3s ease;">
+                                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li style="margin-right: 10px;">
+                                    <a href="{{ team.instagram }}" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #f5f5f5; border-radius: 50%; color: #333; transition: all 0.3s ease;">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ team.linkedin }}" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #f5f5f5; border-radius: 50%; color: #333; transition: all 0.3s ease;">
+                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- TEAM DETAILS ABOUT END -->
+
+<!-- EXPERIENCE INQUIRY AREA START -->
+<div class="experience-inquiry-area pb-115">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="experience" style="background-color: #f9f9f9; padding: 30px; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                    <h5 style="color: #333; margin-bottom: 20px; font-weight: 600;">Working Experience</h5>
+                    <div class="author-quote">
+                        <style>
+                            .experience-list {
+                                list-style-type: disc !important;
+                                padding-left: 20px;
+                                margin-top: 10px;
+                            }
+
+                            .experience-list li {
+                                display: list-item !important;
+                                list-style: disc !important;
+                                margin-bottom: 8px;
+                                position: relative;
+                            }
+
+                            .experience-list li:before {
+                                content: "•";
+                                position: absolute;
+                                left: -15px;
+                            }
+                        </style>
+                        <ul class="experience-list">
+                            {% for point in work_experience %}
+                            <li>{{ point }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="inquery leave-review" style="background-color: #f9f9f9; padding: 30px; border-radius: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                    <h5 style="color: #333; margin-bottom: 20px; font-weight: 600;">Contact for any Inquiry</h5>
+                    <form id="team-contact-form" action="{% url 'team:team_contact' team.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                                <input type="text" name="name" placeholder="Your name" required>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <input type="email" name="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <input type="text" name="phone" placeholder="Phone" required>
+                        <textarea name="message" placeholder="Write your message here" required></textarea>
+                        <button type="submit" class="submit-btn-1">SEND MESSAGE</button>
+                    </form>
+                    <p class="form-messege"></p>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#team-contact-form').on('submit', function (e) {
+                                e.preventDefault();
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: $(this).attr('action'),
+                                    data: $(this).serialize(),
+                                    success: function (response) {
+                                        if (response.success) {
+                                            $('.form-messege').html('<div class="alert alert-success">' + response.message + '</div>');
+                                            $('#team-contact-form')[0].reset();
+                                        } else {
+                                            $('.form-messege').html('<div class="alert alert-danger">' + response.message + '</div>');
+                                        }
+                                    },
+                                    error: function () {
+                                        $('.form-messege').html('<div class="alert alert-danger">An error occurred. Please try again later.</div>');
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EXPERIENCE INQUIRY AREA END -->
+{% endblock %}

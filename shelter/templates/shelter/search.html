@@ -1,0 +1,126 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+<title> {% block title %}Search Result | Shelter {% endblock %} </title>
+{% block content %}
+<!-- BREADCRUMBS AREA START -->
+<div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <h2 class="breadcrumbs-title">Search Results </h2>
+                    <ul class="breadcrumbs-list">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Search Results</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<!-- BREADCRUMBS AREA END -->
+
+<!-- SEARCH BOX START -->
+<div class="search-property ptb-50" style="background: #f8f9fa; padding: 60px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="display: flex; justify-content: center; align-items: center;">
+                <div class="search-box-wrapper"
+                    style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(149, 196, 31, 0.15); max-width: 800px; width: 100%;">
+                    <h3 class="text-center"
+                        style="color: #95c41f; font-size: 36px; font-weight: 700; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px;">
+                        Find Your Perfect Property
+                    </h3>
+                    <form action="{% url 'search' %}" method="GET">
+                        <div class="search-form">
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-group">
+                                        <input type="text" name="keyword" class="form-control"
+                                            placeholder="Search by Property Name or Location"
+                                            style="height: 60px; border-radius: 10px; border: 2px solid #e0e0e0; box-shadow: none; padding: 0 25px; font-size: 16px; transition: all 0.3s;">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
+                                        <select name="property_type" class="form-control"
+                                            style="height: 60px; border-radius: 10px; border: 2px solid #e0e0e0; box-shadow: none; padding: 0 25px; font-size: 16px; background-color: white; transition: all 0.3s;">
+                                            <option value="">Property Type</option>
+                                            <option value="House">House</option>
+                                            <option value="Apartment">Apartment</option>
+                                            <option value="Villa">Villa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
+                                        <select name="status" class="form-control"
+                                            style="height: 60px; border-radius: 10px; border: 2px solid #e0e0e0; box-shadow: none; padding: 0 25px; font-size: 16px; background-color: white; transition: all 0.3s;">
+                                            <option value="">Status</option>
+                                            <option value="Sale">For Sale</option>
+                                            <option value="Rent">For Rent</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn"
+                                        style="width: 100%; max-width: 300px; padding: 18px 40px; border-radius: 10px; font-weight: 700; text-transform: uppercase; background: #95c41f; border: none; color: white; font-size: 16px; box-shadow: 0 4px 15px rgba(149, 196, 31, 0.3); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; margin: 10px auto 0;">
+                                        <i class="fa fa-search mr-2"></i> Search Property
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SEARCH BOX END -->
+
+<!-- FEATURED FLAT AREA START -->
+<div class="featured-flat-area pt-115 pb-80">
+    <div class="container">
+
+        <div class="featured-flat">
+            <div class="row">
+                {% for home in query_list %}
+                <!-- flat-item -->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="flat-item">
+                        <div class="flat-item-image">
+                            <span class="for-sale">{{ home.status}}</span>
+                            <a href="{% url 'property_detail' home.slug %}"><img src="{{ home.image.url }}"
+                                    width="368px" height="250px" alt=""></a>
+                            <div class="flat-link">
+                                <a href="{% url 'property_detail' home.slug %}">More Details</a>
+                            </div>
+                            <ul class="flat-desc">
+                                <li>
+                                    <img src="{% static 'shelter/images/icons/4.png' %}" alt="">
+                                    <span>{{ home.area }}</span>
+                                </li>
+                                <li>
+                                    <img src="{% static 'shelter/images/icons/5.png' %}" alt="">
+                                    <span>{{ home.bedrooms}}</span>
+                                </li>
+                                <li>
+                                    <img src="{% static 'shelter/images/icons/6.png' %}" alt="">
+                                    <span>{{ home.bathrooms}}</span>
+                                </li>
+                            </ul>
+                        </div>                            <div class="flat-item-info">                            <div class="flat-title-price">
+                                <h5><a href="{% url 'property_detail' home.slug %}">{{ home.title }} </a></h5>
+                                <span class="price">INR {{ home.price }}</span>
+                            </div>
+                            <p><img src="{% static 'shelter/images/icons/location.png' %}" alt="">{{ home.location}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FEATURED FLAT AREA END -->
+{% endblock %}

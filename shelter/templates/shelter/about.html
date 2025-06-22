@@ -1,0 +1,557 @@
+{% extends 'shelter/base.html' %}
+<title> {% block title %} About us | Shelter {% endblock %}</title>
+{% block content %}
+{% load static %}
+<style>
+    .team-card {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        background: #fff;
+        border-radius: 5px;
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-contact-hover {
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .team-card:hover .team-contact-hover {
+        bottom: 0;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .contact-item i {
+        margin-right: 10px;
+        color: #4CAF50;
+        width: 16px;
+    }
+
+    .team-social-media {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    .team-social-media li {
+        margin: 0 8px;
+    }
+
+    .team-social-media li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    .team-social-media li a:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    /* Reset agents styling */
+    .single-agent {
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .agent-image img {
+        width: 100%;
+    }
+
+    .agent-info {
+        background-color: #ffffff;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .agent-info-hover {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -100%;
+        background-color: #ffffff;
+        padding: 15px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .single-agent:hover .agent-info-hover {
+        bottom: 0;
+    }
+</style>
+
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <h2 class="breadcrumbs-title">About Us</h2>
+                    <ul class="breadcrumbs-list">
+                        <li><a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a></li>
+                        <li>About</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+
+<!-- About Section Begin -->
+<section class="about-section spad" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-text">
+                    <div class="section-title mb-30">
+                        <h3>WELCOME TO</h3>
+                        <h2 class="h1">SHELTEK REALTY</h2>
+                    </div>
+                    <p>For over 15 years, we have been helping clients find their dream properties. Our mission is to
+                        provide exceptional service and guidance through every step of the real estate journey. We pride
+                        ourselves on integrity, professionalism, and in-depth knowledge of the local market.</p>
+                    <p>Our team of skilled professionals combines years of experience with innovative approaches to
+                        ensure a seamless experience for buyers, sellers, and investors alike. We understand that real
+                        estate decisions are among the most important ones you'll make, and we're committed to making
+                        the process as smooth as possible.</p>
+                    <div class="author-quote">
+                        <p><em>"We don't just sell houses; we help you find a home where memories are made."</em></p>
+                    </div>
+                    <div class="mt-30">
+                        <a href="{% url 'contact' %}" class="button-1 btn-hover-1"
+                            style="color: #000 !important;">CONTACT US</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-image">
+                    <img src="{% static 'shelter/images/about/4.jpg' %}" alt="About Us Image"
+                        class="img-responsive shadow-lg rounded">
+                    <div class="experience-year">
+                        <h2>15+</h2>
+                        <span>YEARS OF EXPERIENCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Section End -->
+
+<!-- Founder Section Begin -->
+<section class="founder-section spad" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-2 text-center mb-70">
+                    <h2>OUR FOUNDER'S VISION</h2>
+                    <p>The foundation of our success</p>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <div class="founder-image mb-30">
+                    <img src="{% static 'img/founder.jpg' %}" alt="Company Founder"
+                        class="img-responsive shadow-lg rounded">
+                    <div class="founder-info">
+                        <h3>David Thompson</h3>
+                        <p>Founder & CEO</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="founder-text">
+                    <div class="mb-40">
+                        <h3>OUR MISSION</h3>
+                        <p>To revolutionize the real estate industry by providing transparent, client-focused services
+                            that empower people to make the best property decisions for their unique situations. We
+                            strive to blend traditional values with innovative approaches to create lasting
+                            relationships built on trust and exceptional results.</p>
+                    </div>
+                    <div class="mb-40">
+                        <h3>OUR VISION</h3>
+                        <p>To be the most trusted name in real estate, recognized for integrity, expertise, and
+                            personalized service that transforms the property buying and selling experience into
+                            something truly special for every client.</p>
+                    </div>
+                    <div class="founder-quote">
+                        <p><em>"I founded Sheltek Realty with a simple belief: that buying or selling a home should be
+                                one of life's most rewarding experiences, not one of its most stressful. Our commitment
+                                to this principle guides everything we do."</em></p>
+                        <span>- David Thompson, Founder</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Founder Section End -->
+
+<!-- Why Choose Us Section Begin -->
+<section class="why-choose-us bg-gray spad" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-2 text-center">
+                    <h2>WHY CHOOSE US</h2>
+                    <p>What makes Sheltek your best choice</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="fi-icon">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+                    <div class="fi-text">
+                        <h4>Local Market Expertise</h4>
+                        <p>Deep knowledge of local neighborhoods to help you make the right choice.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="fi-icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <div class="fi-text">
+                        <h4>Client-Focused Approach</h4>
+                        <p>We listen to your needs and tailor our services to match your goals.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="fi-icon">
+                        <i class="fa fa-check-circle"></i>
+                    </div>
+                    <div class="fi-text">
+                        <h4>Proven Track Record</h4>
+                        <p>Years of success and happy clients across hundreds of transactions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="fi-icon">
+                        <i class="fa fa-handshake-o"></i>
+                    </div>
+                    <div class="fi-text">
+                        <h4>Personalized Service</h4>
+                        <p>Individual attention for your unique real estate needs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="fi-icon">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <div class="fi-text">
+                        <h4>Innovative Solutions</h4>
+                        <p>Modern tech and tools to make your experience better.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="fi-icon">
+                        <i class="fa fa-shield"></i>
+                    </div>
+                    <div class="fi-text">
+                        <h4>Trusted Advisors</h4>
+                        <p>Honest communication and ethical practices you can rely on.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Why Choose Us Section End -->
+
+<!-- Counter Area Begin -->
+<div class="booking-area bg-1 call-to-bg plr-140 pt-75" style="padding-top: 80px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="section-title text-white">
+                    <h3>OUR</h3>
+                    <h2 class="h1">ACHIEVEMENTS</h2>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <div class="booking-conternt clearfix">
+                    <div class="counter-content">
+                        <!-- counter-item -->
+                        <div class="counter-item">
+                            <h2>
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="counter">850</span>
+                            </h2>
+                            <p>Properties Sold</p>
+                        </div>
+                        <!-- counter-item -->
+                        <div class="counter-item">
+                            <h2>
+                                <i class="fa fa-key" aria-hidden="true"></i>
+                                <span class="counter">1200</span>
+                            </h2>
+                            <p>Happy Clients</p>
+                        </div>
+                        <!-- counter-item -->
+                        <div class="counter-item">
+                            <h2>
+                                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                                <span class="counter">15</span>
+                            </h2>
+                            <p>Years Experience</p>
+                        </div>
+                        <!-- counter-item -->
+                        <div class="counter-item">
+                            <h2>
+                                <i class="fa fa-trophy" aria-hidden="true"></i>
+                                <span class="counter">24</span>
+                            </h2>
+                            <p>Awards Won</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Counter Area End -->
+
+<!-- Team Section Begin -->
+<section class="team-section spad" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-2 text-center">
+                    <h2>MEET OUR TEAM & AGENTS</h2>
+                    <p>Our experienced professionals are here to help you find your dream property</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title-2 text-center mb-70">
+            <h2>MEET OUR AGENTS</h2>
+            <p>Our experienced agents are here to help you find your dream property</p>
+        </div>        <div class="row">
+            {% for agent in agents %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="team-card">
+                    <a href="{% url 'agent_detail' agent.id %}" style="display: block; color: inherit; text-decoration: none;">
+                        <img src="{{ agent.photo.url }}" alt="{{ agent.name }}" style="width: 100%;">
+                        <div style="padding: 15px; text-align: center;">
+                            <h5 style="color: #333;">{{ agent.name }}</h5>
+                            <p>{{ agent.title }}</p>
+                        </div>
+                    </a>
+                    <div class="team-contact-hover">
+                        <div class="contact-item">
+                            <i class="fa fa-phone"></i>
+                            <a href="tel:{{ agent.phone }}"><span>{{ agent.phone }}</span></a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-envelope"></i>
+                            <a href="mailto:{{ agent.email }}"><span>{{ agent.email }}</span></a>
+                        </div>
+                        <ul class="team-social-media">
+                            <li><a href="https://wa.me/{{ agent.whatsapp }}"><i class="fa fa-whatsapp"></i></a>
+                            </li>
+                            <li><a href="{{ agent.instagram }}"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="{{ agent.linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 and not forloop.last %}
+        </div>
+        <div class="row mt-4">
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center mt-5">
+                <a href="{% url 'agents_list' %}" class="button-1 btn-hover-1" style="color: #000 !important;">VIEW ALL
+                    AGENTS</a>
+            </div>
+        </div>
+
+        <div class="section-title-2 text-center mb-70 pt-60">
+            <h2>MEET OUR PROFESSIONAL TEAM</h2>
+            <p>Our dedicated team members are the foundation of our success</p>
+        </div>
+        <div class="row">
+            {% for team_member in teams %}
+            <div class="col-lg-3 col-md-6 mb-4">                
+                <div class="team-card">
+                    <a href="{% url 'team:team_detail' team_member.id %}" style="display: block; color: inherit; text-decoration: none;">
+                        <img src="{{ team_member.photo.url }}" alt="{{ team_member.name }}" style="width: 100%;">
+                        <div style="padding: 15px; text-align: center;">
+                            <h5 style="color: #333;">{{ team_member.name }}</h5>
+                            <p>{{ team_member.title }}</p>
+                        </div>
+                    </a>
+                    <div class="team-contact-hover">
+                        <div class="contact-item">
+                            <i class="fa fa-phone"></i>
+                            <a href="tel:{{ team_member.phone }}"><span>{{ team_member.phone }}</span></a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-envelope"></i>
+                            <a href="mailto:{{ team_member.email }}"><span>{{ team_member.email }}</span></a>
+                        </div>
+                        <ul class="team-social-media">
+                            <li><a href="https://wa.me/{{ team_member.whatsapp }}"><i class="fa fa-whatsapp"></i></a>
+                            </li>
+                            <li><a href="{{ team_member.instagram }}"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="{{ team_member.linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 and not forloop.last %}
+        </div>
+        <div class="row">
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 text-center mt-5">
+                <a href="{% url 'team:team' %}" class="button-1 btn-hover-1" style="color: #000 !important;">VIEW ALL
+                    TEAM MEMBERS</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Section End -->
+
+<!-- Testimonial Section Begin -->
+<section class="testimonial-section bg-gray spad pt-60" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-2 text-center">
+                    <h2>WHAT OUR CLIENTS SAY</h2>
+                    <p>Read testimonials from our satisfied customers</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="testimonial-carousel dots-right-btm">
+                    <div class="col-lg-12">
+                        <div class="testimonial-item">
+                            <div class="testimonial-brief">
+                                <p>"Our agent went above and beyond to help us find our dream home. The entire process
+                                    was smooth and stress-free. Highly recommend Sheltek for their exceptional service
+                                    and attention to detail!"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="{% static 'img/testimonial-1.jpg' %}" alt="">
+                                </div>
+                                <div class="author-info">
+                                    <h5>John Smith</h5>
+                                    <span>Home Buyer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="testimonial-item">
+                            <div class="testimonial-brief">
+                                <p>"Sold my property in just two weeks! The marketing strategy was brilliant, and I got
+                                    more than my asking price. The team at Sheltek was professional, knowledgeable, and
+                                    responsive. Couldn't be happier!"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="{% static 'img/testimonial-2.jpg' %}" alt="">
+                                </div>
+                                <div class="author-info">
+                                    <h5>Sarah Johnson</h5>
+                                    <span>Property Seller</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="testimonial-item">
+                            <div class="testimonial-brief">
+                                <p>"As a first-time investor, I appreciated the guidance and expertise provided by
+                                    Sheltek. They helped me find the perfect rental property and continue to provide
+                                    excellent management services. My investment is performing better than expected!"
+                                </p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="{% static 'img/testimonial-3.jpg' %}" alt="">
+                                </div>
+                                <div class="author-info">
+                                    <h5>Michael Brown</h5>
+                                    <span>Property Investor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonial Section End -->
+
+<!-- Call to Action Begin -->
+<div class="call-to-action bg-blue call-to-bg plr-140 pt-60 pb-60" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="call-to-text text-white">
+                    <h3>LOOKING FOR A DREAM HOME?</h3>
+                    <h2>We can help you realize your dream of a new home</h2>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="call-to-button text-center">
+                    <a href="{% url 'properties_list' %}" class="button-1 btn-block btn-hover-1">VIEW OUR PROPERTIES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Call to Action End -->
+
+{% endblock %}

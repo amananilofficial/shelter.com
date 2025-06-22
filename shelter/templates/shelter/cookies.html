@@ -1,0 +1,132 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+<title>{% block title %}Cookie Policy | Shelter{% endblock %}</title>
+{% block content %}
+    <!-- BREADCRUMBS AREA START -->
+    <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="breadcrumbs">
+                        <h2 class="breadcrumbs-title">Cookie Policy</h2>
+                        <ul class="breadcrumbs-list">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>Cookie Policy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMBS AREA END -->
+
+    <!-- COOKIE POLICY AREA START -->
+    <section class="page-wrapper">
+        <div class="cookies-area ptb-115">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-2 text-center">
+                            <h2>COOKIE POLICY</h2>
+                            <p>Last Updated: {% now "F d, Y" %}</p>
+                        </div>
+                        
+                        <div class="cookies-content">
+                            <div class="single-cookies mb-30">
+                                <h4>1. What Are Cookies?</h4>
+                                <p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to the website owners. Cookies help provide functionality such as remembering your preferences, logging in to secure areas, or providing personalized content.</p>
+                            </div>
+                            
+                            <div class="single-cookies mb-30">
+                                <h4>2. How We Use Cookies</h4>
+                                <p>We use cookies for various purposes, including:</p>
+                                <ul>
+                                    <li><strong>Essential cookies:</strong> These are necessary for the website to function properly. They enable core functionality such as security, network management, and account access.</li>
+                                    <li><strong>Functionality cookies:</strong> These are used to remember your preferences and settings, such as language preference or display settings.</li>
+                                    <li><strong>Analytics cookies:</strong> These help us understand how visitors interact with our website by collecting and reporting information anonymously.</li>
+                                    <li><strong>Advertising cookies:</strong> These are used to deliver advertisements that are relevant to you and your interests.</li>
+                                    <li><strong>Session cookies:</strong> These are temporary cookies that are deleted when you close your browser.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="single-cookies mb-30">
+                                <h4>3. Types of Cookies We Use</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Cookie Type</th>
+                                                <th>Purpose</th>
+                                                <th>Duration</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Session</td>
+                                                <td>Used to maintain your session and property search preferences</td>
+                                                <td>Session (until you close your browser)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Authentication</td>
+                                                <td>Used to identify you when you sign in</td>
+                                                <td>30 days</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Preferences</td>
+                                                <td>Stores your preferences such as language and display settings</td>
+                                                <td>1 year</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Analytics</td>
+                                                <td>Helps us understand how users interact with our website</td>
+                                                <td>2 years</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="single-cookies mb-30">
+                                <h4>4. Managing and Controlling Cookies</h4>
+                                <p>You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. However, if you do this, you may have to manually adjust some preferences every time you visit a site, and some services and functionalities may not work.</p>
+                                <p>Most web browsers allow some control of most cookies through the browser settings. To find out more about cookies, including how to see what cookies have been set, visit <a href="https://www.aboutcookies.org" target="_blank">www.aboutcookies.org</a> or <a href="https://www.allaboutcookies.org" target="_blank">www.allaboutcookies.org</a>.</p>
+                                
+                                <h5>How to manage cookies in different web browsers:</h5>
+                                <ul>
+                                    <li><strong>Google Chrome:</strong> <a href="https://support.google.com/chrome/answer/95647" target="_blank">https://support.google.com/chrome/answer/95647</a></li>
+                                    <li><strong>Mozilla Firefox:</strong> <a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank">https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences</a></li>
+                                    <li><strong>Microsoft Edge:</strong> <a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank">https://support.microsoft.com/en-us/microsoft-edge</a></li>
+                                    <li><strong>Safari:</strong> <a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank">https://support.apple.com/guide/safari/manage-cookies</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="single-cookies mb-30">
+                                <h4>5. Third-Party Cookies</h4>
+                                <p>In addition to our own cookies, we may also use various third-party cookies to report usage statistics of the website and deliver advertisements that are relevant to you. These third parties may include:</p>
+                                <ul>
+                                    <li>Google Analytics</li>
+                                    <li>Facebook</li>
+                                    <li>Twitter</li>
+                                    <li>LinkedIn</li>
+                                    <li>Advertising networks</li>
+                                </ul>
+                                <p>Each of these third parties has their own privacy and cookie policies, which we encourage you to review.</p>
+                            </div>
+                            
+                            <div class="single-cookies mb-30">
+                                <h4>6. Changes to Our Cookie Policy</h4>
+                                <p>We may update our Cookie Policy from time to time. We will notify you of any changes by posting the new Cookie Policy on this page and updating the "Last Updated" date.</p>
+                            </div>
+                            
+                            <div class="single-cookies mb-30">
+                                <h4>7. Contact Us</h4>
+                                <p>If you have any questions about our Cookie Policy, please contact us at <a href="mailto:amananil836@gmail.com">amananil836@gmail.com</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- COOKIE POLICY AREA END -->
+{% endblock %}
